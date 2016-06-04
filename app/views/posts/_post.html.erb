@@ -1,0 +1,31 @@
+<ul>
+  <li>URL : <%= post.url %> </li>
+  <li>Content : <%= post.content %> </li>
+  <li>Author : <%= User.find(post.user_id).email %> </li>
+</ul>
+
+<label for="subs">Post belongs to subs :</label>
+<ul id= "subs">
+  <% post.subs.each do |sub| %>
+    <li><%= sub.title %></li>
+  <% end %>
+</ul>
+
+
+<%= button_to "Edit post", edit_post_url(post), method: :get %>
+<br>
+
+<label for="comments">COMMENTS:</label>
+<ul id= "comments">
+  <% post.comments.where(parent_comment_id: nil).each do |comment| %>
+    <li><%= link_to comment.content, comment_url(comment) %></li>
+      <ul>
+        <% comment.child_comments.each do |child| %>
+          <li> <%= child.content %> </li>
+        <% end %>
+      </ul>
+  <% end %>
+</ul>
+<br>
+
+<%= button_to "Create Comment", new_post_comment_url(post), method: :get %>

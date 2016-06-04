@@ -1,0 +1,13 @@
+
+<h1> <%= @sub.title %> </h1>
+
+<%= render "sub", sub: @sub %>
+<br>
+<%= button_to "edit sub", edit_sub_url(@sub), method: :get%>
+
+<br>
+
+<% @sub.posts.each do |post| %>
+  <%= link_to post.title, post_url(post) %>
+  <br>
+<% end %>

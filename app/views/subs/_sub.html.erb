@@ -1,0 +1,10 @@
+
+<h2> <%= sub.description %>  </h2>
+
+<label for="add_post"></label>
+<form action="<%=new_post_url%>" method="get" id= "add_post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+
+  <input type="hidden" name="post[sub_id]" value="<%= sub.id %>">
+  <input type="submit" value="Create Post">
+</form>

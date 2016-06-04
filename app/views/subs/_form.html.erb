@@ -1,0 +1,20 @@
+<% if sub.persisted? %>
+  <% url, method, button_text = sub_url(sub), "patch", "update sub"%>
+<% else %>
+  <% url, method, button_text = subs_url, "post", "create sub"%>
+<% end %>
+
+<form action="<%= url %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+
+  <br>
+  <label for="sub_title">Title</label>
+  <input type="text" name="sub[title]" value="<%= sub.title %>">
+  <br>
+  <label for="sub_description">Description</label>
+  <input type="text" name="sub[description]" value="<%= sub.description %>">
+  <br>
+  <input type="submit" value="<%= button_text %>">
+
+</form>
